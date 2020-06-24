@@ -10,6 +10,10 @@ const Breweries =({ isFetching, breweries, error, getBreweries}) => {
         getBreweries();
     },[])
 
+    if(error){
+        return <h2>Error Loading Breweries</h2>
+    }
+
     return(
         <div className='breweries'>
            {isFetching ? (<h3>Wait data loading....</h3>):( <div>

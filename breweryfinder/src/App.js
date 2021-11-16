@@ -5,7 +5,7 @@ import './images/image1.png';
 import styled from 'styled-components';
 import './images/image2.png'
 import SearchForm from './components/SearchForm';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const StyledImage = styled.img `
 width:30%;

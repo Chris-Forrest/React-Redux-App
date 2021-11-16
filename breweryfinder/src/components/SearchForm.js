@@ -1,26 +1,45 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,Component } from "react";
+import { connect } from "react-redux";
+import { zipcodeBrewries } from '../actions';
+import { useHistory } from "react-router-dom";
 
 
-const SearchForm =()=> {
 
-    const [zipcode, setZipcode] = useState('');
+const SearchForm = ( props ) => {
 
-    const handleChanges = e =>{
-        setZipcode(e.target.value)
-    };
+     const [ zipCode, setZipCode] = React.useState({});
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        zipcodeBrewries(zipCode);
+       // history.push('/mvp')
+    }
+
+    const handleSelect = e => {
+        setZipCode(e.value)
+    }
+  
 
     return(
         <form>
-            <label>Search by zip code</label>
+            <label >Search by zip code</label>
             <input 
             type='text'
             name='zipcode'
-            onChange={handleChanges}
-            value={zipcode}
+            onChange={handleSelect}
             />
-            <button>Search</button>
+            <button onClick={handleSubmit} >Search</button>
         </form>
     )
 
 }
-export default SearchForm;
+
+const mapStateToProps = state => {
+    return {
+        zipcode: state.zipcode
+    }
+}
+export default connect(
+    mapStateToProps,
+    {zipcodeBrewries}
+)(SearchForm);
